@@ -4,7 +4,7 @@ title:  "测试题目"
 date:   2016-05-03 10:18:42 +0800
 categories: jekyll update
 ---
-测试
+成功了
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
