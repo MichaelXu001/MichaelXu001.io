@@ -16,6 +16,5 @@ baseurl: "http://michaelxu001.github.io/MichaelXu001.io/" # the subpath of your 
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
-sass: true
 # Build settings
 markdown: kramdown
