@@ -48,18 +48,18 @@ feed: /atom.xml
 #菜单配置
 nav:
   - text: 首页
-    url: /index.html
+    url: /MichaelXu001.io/index.html
   - text: 文章归档
-    url: /archives.html
+    url: /MichaelXu001.io/archives.html
   - text: 作品
-    url: /works.html
+    url: /MichaelXu001.io/works.html
   - text: 联系我
     url: http://www.zhanxin.info/contact.html
   - text: 博客源代码
     url: https://github.com/pizn/pizn.github.com
 
 #theme config
-themes: /themes/violet
+themes: /MichaelXu001.io/themes/violet
 
 #配置你喜欢的顶部背景图片
 headimg:
