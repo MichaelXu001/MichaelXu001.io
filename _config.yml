@@ -1,8 +1,8 @@
 # Where things are
-source:       .
-destination:  ./_site
-plugins:      ./_plugins
-layouts:      ./_layouts
+source:       /MichaelXu001.io
+destination:  /MichaelXu001.io/_site
+plugins:      /MichaelXu001.io/_plugins
+layouts:      /MichaelXu001.io/_layouts
 paginate:     8
 
 # Handling Reading
