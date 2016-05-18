@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kangfengde</title>
+    <description>康凤德的博客 Java Developer</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 18 May 2016 11:14:26 +0800</pubDate>
+    <lastBuildDate>Wed, 18 May 2016 11:14:26 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.3</generator>
+    
+      <item>
+        <title>velocity语法记录</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;指令:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;指令:&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#foreach&lt;/code&gt;指令-用于循环:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#foreach($list in $lists)
+
+#end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$lists&lt;/code&gt;可以是&lt;code class=&quot;highlighter-rouge&quot;&gt;List&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;Vector&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;HashTable&lt;/code&gt;、数组等；其中在循环中有一个变量$velocityCount作为循环计数使用，该变量从1开始。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#if&lt;/code&gt;指令-用户判断:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#if($value)##判断`value`值不为空
+
+#end
+
+#if($value &amp;amp;&amp;amp; $value &amp;gt; 0)
+
+#elseif($value = 0)
+
+#else
+
+#end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#if&lt;/code&gt;的逻辑判断和一般的java判断没什么区别&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#set&lt;/code&gt;指令-用户赋值:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#set($value = `value`)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#parse&lt;/code&gt;指令-引入另外一个模板:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#parse(demo.vm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#include&lt;/code&gt;指令-引入文件(该页面只能我静态的):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include(soruce.vm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#stop&lt;/code&gt;指令:&lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 Jan 2016 05:25:09 +0800</pubDate>
+        <link>/2016/01/02/velocity-record/</link>
+        <guid isPermaLink="true">/2016/01/02/velocity-record/</guid>
+        
+        
+        <category>velocity</category>
+        
+      </item>
+    
+      <item>
+        <title>SpringMVC中redirect时传入的参数中文乱码</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;问题：&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;问题：&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SpringMVC&lt;/code&gt; 中 &lt;code class=&quot;highlighter-rouge&quot;&gt;redirect&lt;/code&gt; 时传入的中文参数时，在另一个请求中获取时获取出的参数乱码。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RequestMapping(value=&quot;searchIndex.htm&quot;,method = RequestMethod.POST)
+public ModelAndView searchIndex(Model model, HttpServletRequest request, HttpServletResponse response){
+	ModelAndView view = null;
+	...
+	view = new ModelAndView(&quot;redirect:/projects.htm?name=&quot;+condition+&quot;&amp;amp;source=&quot; + ProjectListQueryConEnum.search.getValue());
+	...
+	return view;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;当 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; 为中文这时进入 &lt;code class=&quot;highlighter-rouge&quot;&gt;projects.htm&lt;/code&gt; 请求后获取 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; 的值变为乱码。
+如何解决呢？
+在跳转前不能把参数直接放在请求里面而是放在 &lt;code class=&quot;highlighter-rouge&quot;&gt;RedirectAttributesModelMap&lt;/code&gt; 对象里便可以了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RequestMapping(value=&quot;searchIndex.htm&quot;,method = RequestMethod.POST)
+public ModelAndView searchIndex(Model model,RedirectAttributesModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
+	ModelAndView view = null;
+	...
+		modelMap.addFlashAttribute(&quot;name&quot;, condition);
+		view = new ModelAndView(&quot;redirect:/projects.htm?source=&quot; + ProjectListQueryConEnum.search.getValue());
+	...
+	return view;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;之后再进入跳转后的请求里便可以直接获取 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; 值。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RequestMapping(value=&quot;/projects.htm&quot;, method=RequestMethod.GET)
+public ModelAndView getView(Model model, HttpServletRequest request, HttpServletResponse response) {
+	
+	ModelAndView view = null;
+	...
+	Map&amp;lt;String, ?&amp;gt; map = model.asMap();
+	String name = &quot;&quot;;
+	if(map != null &amp;amp;&amp;amp; map.get(&quot;name&quot;) != null){
+		name = (String) map.get(&quot;name&quot;);
+	}
+	...
+	return view;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这时获取的 &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; 便不是乱码了。&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Tue, 15 Dec 2015 04:05:09 +0800</pubDate>
+        <link>/2015/12/15/java-springmvc-redirect/</link>
+        <guid isPermaLink="true">/2015/12/15/java-springmvc-redirect/</guid>
+        
+        
+        <category>java</category>
+        
+      </item>
+    
+      <item>
+        <title>20151123记录一些java方法</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;方法1-获取中文的拼音&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;方法2-获取时间段内的随机时间：&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;方法1-获取中文的拼音&lt;/h2&gt;
+
+&lt;p&gt;包 &lt;code class=&quot;highlighter-rouge&quot;&gt;pinyin4j&lt;/code&gt; 在 &lt;code class=&quot;highlighter-rouge&quot;&gt;maven&lt;/code&gt; 里的引用：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+	  &amp;lt;groupId&amp;gt;com.belerweb&amp;lt;/groupId&amp;gt;
+	  &amp;lt;artifactId&amp;gt;pinyin4j&amp;lt;/artifactId&amp;gt;
+	  &amp;lt;version&amp;gt;2.5.0&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;根据中文获取对应的拼音：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private boolean isChinese(char a) { 
+     int v = (int)a; 
+     return (v &amp;gt;=19968 &amp;amp;&amp;amp; v &amp;lt;= 171941); 
+}
+
+private String getPyName(String chinese) { 
+    StringBuffer pybf = new StringBuffer(); 
+    char[] arr = chinese.toCharArray(); 
+    HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat(); 
+    defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE); 
+    defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE); 
+    for (int i = 0; i &amp;lt; arr.length; i++) { 
+            if (arr[i] &amp;gt; 128) { 
+            	if(isChinese(arr[i])){
+            		try { 
+                        pybf.append(PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat)[0]); 
+                    } catch (BadHanyuPinyinOutputFormatCombination e) { 
+						e.printStackTrace(); 
+                    } 
+            	}else{
+            		pybf.append(arr[i]); 
+            	}
+            } else { 
+                    pybf.append(arr[i]); 
+            } 
+    } 
+    return pybf.toString(); 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;方法2-获取时间段内的随机时间：&lt;/h2&gt;
+
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private long random(long begin, long end) {
+	long rtn = begin + (long) (Math.random() * (end - begin));
+	
+	// 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
+	if (rtn == begin || rtn == end) {
+		return random(begin, end);
+	}
+	return rtn;
+}
+
+private Date randomDate(String beginDate, String endDate) {
+	try {
+		SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+		Date start = format.parse(beginDate);// 构造开始日期
+		Date end = format.parse(endDate);// 构造结束日期
+
+		// getTime()表示返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。
+		if (start.getTime() &amp;gt;= end.getTime()) {
+			return null;
+		}
+		long date = random(start.getTime(), end.getTime());
+		return new Date(date);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Tue, 24 Nov 2015 05:11:39 +0800</pubDate>
+        <link>/2015/11/24/java-some-method/</link>
+        <guid isPermaLink="true">/2015/11/24/java-some-method/</guid>
+        
+        
+        <category>java</category>
+        
+      </item>
+    
+      <item>
+        <title>IE7下使用onchange事件重复上传附件问题</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;问题&lt;/h2&gt;
+
+&lt;p&gt;在IE7下使用的input type=file的onchange事件上传附件时会上传两条同样的附件，查找资料后发现是属于IE7本身的问题&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;IE has an issue when when:
+onchange event fires, causing DOM structure/content to change (e.g. your .innerHTML change)
+which basically causes a race condition between 2 threads…. the one updating the content (the
+.innerHTML) and the one moving the focus to the new field.
+Since IE only supports a single GLOBAL event object instead of the W3C Event model where the
+events are linked to the things that fire them, there are chances for collissions like the one you are
+witnessing.
+Basically you have 1 event saying “give focus to this” and another saying “change the text content
+of this”… but they collide, and you end up with focus in the div.
+In all the other Standards based browsers, there is an event instance linked to the “i2” input box,
+of type “onchange” when you “leave” the input box, by clicking in the “i1” input box, which fires its
+own linked event for “onfocus”.
+The flaw with the MS design is more apparent when you consider the other events (that you are
+not tracking) that are also firing&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;大概意思就是：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;IE7&lt;/code&gt; 下对 &lt;code class=&quot;highlighter-rouge&quot;&gt;onchange&lt;/code&gt; 事件的处理存在bug，即 &lt;code class=&quot;highlighter-rouge&quot;&gt;input&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;onchange&lt;/code&gt; 事件触发时对应了两个线程，一个是 &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt; 改变的 &lt;code class=&quot;highlighter-rouge&quot;&gt;change&lt;/code&gt; ，一个是鼠标改变的 &lt;code class=&quot;highlighter-rouge&quot;&gt;change&lt;/code&gt; ，&lt;code class=&quot;highlighter-rouge&quot;&gt;IE7&lt;/code&gt; 无法处理这个问题就会变成一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;onchange&lt;/code&gt; 事件会触发两次&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;解决方法：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;设置一个全局的 &lt;code class=&quot;highlighter-rouge&quot;&gt;js&lt;/code&gt; 变量，记录每一次触发 &lt;code class=&quot;highlighter-rouge&quot;&gt;onchange&lt;/code&gt; 时的值同时对比上次记录的值即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Tue, 24 Nov 2015 04:07:09 +0800</pubDate>
+        <link>/2015/11/24/ie7-onchange-upload/</link>
+        <guid isPermaLink="true">/2015/11/24/ie7-onchange-upload/</guid>
+        
+        
+        <category>IE</category>
+        
+      </item>
+    
+      <item>
+        <title>mysql自定义的一些函数</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;函数1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;函数2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;函数1&lt;/h2&gt;
+
+&lt;p&gt;获取字符串内根据子字符串切割后的字符串长度：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELIMITER $$
+DROP FUNCTION IF EXISTS `test`.`getArrayStrLength`$$
+CREATE FUNCTION `test`.`getArrayStrLength`(str varchar(8000),split varchar(10)) RETURNS int
+BEGIN
+	DECLARE location INT;
+	DECLARE start INT;
+	DECLARE length INT;
+	SET str = ltrim(rtrim(str));
+	SET location=LOCATE(split,str);
+	SET length=1;
+	myloop:LOOP
+		SET start = location + 1;
+		SET location = LOCATE(split,str,start);
+		SET length = length + 1;
+		IF location = 0 THEN LEAVE myloop;
+		END IF;
+	END LOOP myloop;
+	RETURN length;
+END $$
+DELIMITER ;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;函数2&lt;/h2&gt;
+
+&lt;p&gt;在数组坐标下查询对应的子字符串：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DELIMITER $$
+DROP FUNCTION IF EXISTS `test`.`getArrayStrOfIndex`$$
+CREATE FUNCTION `test`.`getArrayStrOfIndex`(str varchar(8000),split varchar(10),dex INT) RETURNS INT
+BEGIN
+	DECLARE location INT;
+	DECLARE start INT;
+	DECLARE next INT;
+	DECLARE seed INT;
+	SET str = ltrim(rtrim(str));
+	SET start = 1;
+	SET next = 1;
+	SET seed = LENGTH(split);
+	SET location=LOCATE(split,str);
+	myloop:LOOP
+		IF location = 0 OR dex = next THEN LEAVE myloop;
+		END IF;
+		SET start = location + seed;
+		SET location = LOCATE(split,str,start);
+		SET next = next + 1;
+	END LOOP myloop;
+	IF location = 0 THEN SET location = LENGTH(str) + 1;
+	END IF;
+	RETURN SUBSTRING(str,start,location-start);
+END $$
+DELIMITER ;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Fri, 20 Nov 2015 05:06:05 +0800</pubDate>
+        <link>/2015/11/20/mysql-function/</link>
+        <guid isPermaLink="true">/2015/11/20/mysql-function/</guid>
+        
+        
+        <category>mysql</category>
+        
+      </item>
+    
+      <item>
+        <title>GitHub常用指令</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;常用指令&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;常用指令&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;指令&lt;/th&gt;
+      &lt;th&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git init&lt;/td&gt;
+      &lt;td&gt;对文件夹进行git初始化&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git checkout –orphan gh-pages&lt;/td&gt;
+      &lt;td&gt;创建一个没有父节点的分支gh-pages(该分支下的文件会生成网页文件)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git add .&lt;br /&gt;$git commit -m ‘备注’&lt;/td&gt;
+      &lt;td&gt;把内容加入本地git库&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git remote add origin https://github.com/username/rponame.git&lt;br /&gt;$git push origin gh-pages&lt;/td&gt;
+      &lt;td&gt;把本地内容推送到GITHUB上的库里&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git pull origin gh-pages&lt;/td&gt;
+      &lt;td&gt;push前先将远程repository修改pull下来&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;$git remote rm origin&lt;br /&gt;$git remote add origin https://github.com/username/rponame.git&lt;/td&gt;
+      &lt;td&gt;更改远程repository地址&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Thu, 19 Nov 2015 05:06:05 +0800</pubDate>
+        <link>/2015/11/19/github-command/</link>
+        <guid isPermaLink="true">/2015/11/19/github-command/</guid>
+        
+        
+        <category>github</category>
+        
+      </item>
+    
+      <item>
+        <title>EXTJS获取父子、兄弟容器的办法</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;根据当前对象获取其他对象&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;直接获取对象&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#get-&quot; id=&quot;markdown-toc-get-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; 方法:&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#getdom-&quot; id=&quot;markdown-toc-getdom-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getDom&lt;/code&gt; 方法:&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#getcmp&quot; id=&quot;markdown-toc-getcmp&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getCmp&lt;/code&gt;方法:&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;根据当前对象获取其他对象&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当前对象的父对象(上级对象):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.ownerCt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当前对象的下一个相邻的对象:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.nextSibling();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当前对象的上一个相邻的对象:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.previousSibling();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;4&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当前容器中的第一个子对象:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.get(0);
+this.items.first();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;5&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当前容器中的最后一个子对象:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.items.last();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;6&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;查找当前对象的所有上级匹配的容器:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.findParentByType(String xtype);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;查找当前对象的所有下级匹配的组件:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.findByType(String xtype);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;直接获取对象&lt;/h1&gt;
+
+&lt;h2 id=&quot;get-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; 方法:&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; 方法中只有一个参数，这个参数是混合参数，可以是 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点的 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 、也可以是一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Element&lt;/code&gt; 、或者是一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点对象等。&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;•get&lt;/code&gt; 方法其实是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ext.Element.get&lt;/code&gt; 的简写形式。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;getdom-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getDom&lt;/code&gt; 方法:&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getDom&lt;/code&gt; 方法能够得到文档中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点，该方法中包含一个参数，该参数可以是 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点的 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 、 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点对象或 &lt;code class=&quot;highlighter-rouge&quot;&gt;DOM&lt;/code&gt; 节点对应的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ext&lt;/code&gt; 元素( &lt;code class=&quot;highlighter-rouge&quot;&gt;Element&lt;/code&gt; )等。&lt;/li&gt;
+    &lt;li&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;getElementById&lt;/code&gt; 是一个效果&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;getcmp&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getCmp&lt;/code&gt;方法:&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getCmp&lt;/code&gt; 方法用来获得一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ext&lt;/code&gt; 组件，也就是一个已经在页面中初始化了的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Component&lt;/code&gt; 或其子类的对象， &lt;code class=&quot;highlighter-rouge&quot;&gt;getCmp&lt;/code&gt; 方法中只有一个参数，也就是组件的 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 。&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getCmp&lt;/code&gt; 方法其实是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ext.ComponentMgr.get&lt;/code&gt; 方法的简写形式。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Wed, 18 Nov 2015 05:06:05 +0800</pubDate>
+        <link>/2015/11/18/extjs-father-son-object/</link>
+        <guid isPermaLink="true">/2015/11/18/extjs-father-son-object/</guid>
+        
+        
+        <category>extjs</category>
+        
+      </item>
+    
+      <item>
+        <title>maven项目依赖问题</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#jar&quot; id=&quot;markdown-toc-jar&quot;&gt;排除全部jar包影响&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;jar&quot;&gt;排除全部jar包影响&lt;/h3&gt;
+
+&lt;p&gt;如 &lt;code class=&quot;highlighter-rouge&quot;&gt;project1&lt;/code&gt; 需要依赖 &lt;code class=&quot;highlighter-rouge&quot;&gt;project2&lt;/code&gt; ,但是不想要 &lt;code class=&quot;highlighter-rouge&quot;&gt;project2&lt;/code&gt; 引用的 &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; 包。所以在 &lt;code class=&quot;highlighter-rouge&quot;&gt;project1&lt;/code&gt; 中需要排除 &lt;code class=&quot;highlighter-rouge&quot;&gt;project2&lt;/code&gt; 内引用的 &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; 包。当 &lt;code class=&quot;highlighter-rouge&quot;&gt;project2&lt;/code&gt; 中引用的 &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; 包太多，一个个排除显然太过麻烦。直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt; 即可排除引用的 &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; 包:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;com.xxx.xxxx&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;xxxx&amp;lt;/artifactId&amp;gt;
+	&amp;lt;version&amp;gt;1.0&amp;lt;/version&amp;gt;
+	&amp;lt;exclusions&amp;gt;
+	   &amp;lt;exclusion&amp;gt;
+		 &amp;lt;groupId&amp;gt;*&amp;lt;/groupId&amp;gt;
+		 &amp;lt;artifactId&amp;gt;*&amp;lt;/artifactId&amp;gt;
+	   &amp;lt;/exclusion&amp;gt;
+	&amp;lt;/exclusions&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+</description>
+        <pubDate>Tue, 17 Nov 2015 05:06:05 +0800</pubDate>
+        <link>/2015/11/17/maven-project-dependency/</link>
+        <guid isPermaLink="true">/2015/11/17/maven-project-dependency/</guid>
+        
+        
+        <category>maven</category>
+        
+      </item>
+    
+      <item>
+        <title>jekyll Hello World</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;文章&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;文章&lt;/h2&gt;
+
+&lt;p&gt;somethings&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;代码测试：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;background-color: #fff;
+opacity: 0;
+filter:alpha(opacity=0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def print_hi(name)
+  puts &quot;Hi, #{name}&quot;
+end
+print_hi(&#39;Tom&#39;)
+#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 21 Oct 2015 05:06:05 +0800</pubDate>
+        <link>/2015/10/21/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">/2015/10/21/welcome-to-jekyll/</guid>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+  </channel>
+</rss>
