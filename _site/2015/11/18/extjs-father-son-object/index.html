@@ -115,9 +115,9 @@
         <ul id="markdown-toc">
   <li><a href="#section" id="markdown-toc-section">根据当前对象获取其他对象</a></li>
   <li><a href="#section-1" id="markdown-toc-section-1">直接获取对象</a>    <ul>
-      <li><a href="#get-" id="markdown-toc-get-"><code class="highlighter-rouge">get</code> 方法:</a></li>
-      <li><a href="#getdom-" id="markdown-toc-getdom-"><code class="highlighter-rouge">getDom</code> 方法:</a></li>
-      <li><a href="#getcmp" id="markdown-toc-getcmp"><code class="highlighter-rouge">getCmp</code>方法:</a></li>
+      <li><a href="#get-" id="markdown-toc-get-"><code>get</code> 方法:</a></li>
+      <li><a href="#getdom-" id="markdown-toc-getdom-"><code>getDom</code> 方法:</a></li>
+      <li><a href="#getcmp" id="markdown-toc-getcmp"><code>getCmp</code>方法:</a></li>
     </ul>
   </li>
 </ul>
@@ -130,9 +130,8 @@
 
 <p>当前对象的父对象(上级对象):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.ownerCt;
+<pre><code>this.ownerCt;
 </code></pre>
-</div>
 
 <ul>
   <li>2</li>
@@ -140,9 +139,8 @@
 
 <p>当前对象的下一个相邻的对象:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.nextSibling();
+<pre><code>this.nextSibling();
 </code></pre>
-</div>
 
 <ul>
   <li>3</li>
@@ -150,9 +148,8 @@
 
 <p>当前对象的上一个相邻的对象:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.previousSibling();
+<pre><code>this.previousSibling();
 </code></pre>
-</div>
 
 <ul>
   <li>4</li>
@@ -160,10 +157,9 @@
 
 <p>当前容器中的第一个子对象:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.get(0);
+<pre><code>this.get(0);
 this.items.first();
 </code></pre>
-</div>
 
 <ul>
   <li>5</li>
@@ -171,9 +167,8 @@ this.items.first();
 
 <p>当前容器中的最后一个子对象:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.items.last();
+<pre><code>this.items.last();
 </code></pre>
-</div>
 
 <ul>
   <li>6</li>
@@ -181,9 +176,8 @@ this.items.first();
 
 <p>查找当前对象的所有上级匹配的容器:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.findParentByType(String xtype);
+<pre><code>this.findParentByType(String xtype);
 </code></pre>
-</div>
 
 <ul>
   <li>7</li>
@@ -191,38 +185,37 @@ this.items.first();
 
 <p>查找当前对象的所有下级匹配的组件:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>this.findByType(String xtype);
+<pre><code>this.findByType(String xtype);
 </code></pre>
-</div>
 
 <hr />
 
 <h1 id="section-1">直接获取对象</h1>
 
-<h2 id="get-"><code class="highlighter-rouge">get</code> 方法:</h2>
+<h2 id="get-"><code>get</code> 方法:</h2>
 
 <blockquote>
   <ul>
-    <li><code class="highlighter-rouge">get</code> 方法中只有一个参数，这个参数是混合参数，可以是 <code class="highlighter-rouge">DOM</code> 节点的 <code class="highlighter-rouge">id</code> 、也可以是一个 <code class="highlighter-rouge">Element</code> 、或者是一个 <code class="highlighter-rouge">DOM</code> 节点对象等。</li>
-    <li><code class="highlighter-rouge">•get</code> 方法其实是 <code class="highlighter-rouge">Ext.Element.get</code> 的简写形式。</li>
+    <li><code>get</code> 方法中只有一个参数，这个参数是混合参数，可以是 <code>DOM</code> 节点的 <code>id</code> 、也可以是一个 <code>Element</code> 、或者是一个 <code>DOM</code> 节点对象等。</li>
+    <li><code>•get</code> 方法其实是 <code>Ext.Element.get</code> 的简写形式。</li>
   </ul>
 </blockquote>
 
-<h2 id="getdom-"><code class="highlighter-rouge">getDom</code> 方法:</h2>
+<h2 id="getdom-"><code>getDom</code> 方法:</h2>
 
 <blockquote>
   <ul>
-    <li><code class="highlighter-rouge">getDom</code> 方法能够得到文档中的 <code class="highlighter-rouge">DOM</code> 节点，该方法中包含一个参数，该参数可以是 <code class="highlighter-rouge">DOM</code> 节点的 <code class="highlighter-rouge">id</code> 、 <code class="highlighter-rouge">DOM</code> 节点对象或 <code class="highlighter-rouge">DOM</code> 节点对应的 <code class="highlighter-rouge">Ext</code> 元素( <code class="highlighter-rouge">Element</code> )等。</li>
-    <li>与 <code class="highlighter-rouge">getElementById</code> 是一个效果</li>
+    <li><code>getDom</code> 方法能够得到文档中的 <code>DOM</code> 节点，该方法中包含一个参数，该参数可以是 <code>DOM</code> 节点的 <code>id</code> 、 <code>DOM</code> 节点对象或 <code>DOM</code> 节点对应的 <code>Ext</code> 元素( <code>Element</code> )等。</li>
+    <li>与 <code>getElementById</code> 是一个效果</li>
   </ul>
 </blockquote>
 
-<h2 id="getcmp"><code class="highlighter-rouge">getCmp</code>方法:</h2>
+<h2 id="getcmp"><code>getCmp</code>方法:</h2>
 
 <blockquote>
   <ul>
-    <li><code class="highlighter-rouge">getCmp</code> 方法用来获得一个 <code class="highlighter-rouge">Ext</code> 组件，也就是一个已经在页面中初始化了的 <code class="highlighter-rouge">Component</code> 或其子类的对象， <code class="highlighter-rouge">getCmp</code> 方法中只有一个参数，也就是组件的 <code class="highlighter-rouge">id</code> 。</li>
-    <li><code class="highlighter-rouge">getCmp</code> 方法其实是 <code class="highlighter-rouge">Ext.ComponentMgr.get</code> 方法的简写形式。</li>
+    <li><code>getCmp</code> 方法用来获得一个 <code>Ext</code> 组件，也就是一个已经在页面中初始化了的 <code>Component</code> 或其子类的对象， <code>getCmp</code> 方法中只有一个参数，也就是组件的 <code>id</code> 。</li>
+    <li><code>getCmp</code> 方法其实是 <code>Ext.ComponentMgr.get</code> 方法的简写形式。</li>
   </ul>
 </blockquote>
 

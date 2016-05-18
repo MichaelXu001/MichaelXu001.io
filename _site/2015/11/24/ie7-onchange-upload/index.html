@@ -140,13 +140,13 @@ not tracking) that are also firing</p>
 <p>大概意思就是：</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">IE7</code> 下对 <code class="highlighter-rouge">onchange</code> 事件的处理存在bug，即 <code class="highlighter-rouge">input</code> 的 <code class="highlighter-rouge">onchange</code> 事件触发时对应了两个线程，一个是 <code class="highlighter-rouge">value</code> 改变的 <code class="highlighter-rouge">change</code> ，一个是鼠标改变的 <code class="highlighter-rouge">change</code> ，<code class="highlighter-rouge">IE7</code> 无法处理这个问题就会变成一个 <code class="highlighter-rouge">onchange</code> 事件会触发两次</p>
+  <p><code>IE7</code> 下对 <code>onchange</code> 事件的处理存在bug，即 <code>input</code> 的 <code>onchange</code> 事件触发时对应了两个线程，一个是 <code>value</code> 改变的 <code>change</code> ，一个是鼠标改变的 <code>change</code> ，<code>IE7</code> 无法处理这个问题就会变成一个 <code>onchange</code> 事件会触发两次</p>
 </blockquote>
 
 <p>解决方法：</p>
 
 <blockquote>
-  <p>设置一个全局的 <code class="highlighter-rouge">js</code> 变量，记录每一次触发 <code class="highlighter-rouge">onchange</code> 时的值同时对比上次记录的值即可。</p>
+  <p>设置一个全局的 <code>js</code> 变量，记录每一次触发 <code>onchange</code> 时的值同时对比上次记录的值即可。</p>
 </blockquote>
 
 <hr />

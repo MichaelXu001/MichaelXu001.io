@@ -118,9 +118,9 @@
 
 <h2 id="section">问题：</h2>
 
-<p><code class="highlighter-rouge">SpringMVC</code> 中 <code class="highlighter-rouge">redirect</code> 时传入的中文参数时，在另一个请求中获取时获取出的参数乱码。</p>
+<p><code>SpringMVC</code> 中 <code>redirect</code> 时传入的中文参数时，在另一个请求中获取时获取出的参数乱码。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@RequestMapping(value="searchIndex.htm",method = RequestMethod.POST)
+<pre><code>@RequestMapping(value="searchIndex.htm",method = RequestMethod.POST)
 public ModelAndView searchIndex(Model model, HttpServletRequest request, HttpServletResponse response){
 	ModelAndView view = null;
 	...
@@ -129,13 +129,12 @@ public ModelAndView searchIndex(Model model, HttpServletRequest request, HttpSer
 	return view;
 }
 </code></pre>
-</div>
 
-<p>当 <code class="highlighter-rouge">name</code> 为中文这时进入 <code class="highlighter-rouge">projects.htm</code> 请求后获取 <code class="highlighter-rouge">name</code> 的值变为乱码。
+<p>当 <code>name</code> 为中文这时进入 <code>projects.htm</code> 请求后获取 <code>name</code> 的值变为乱码。
 如何解决呢？
-在跳转前不能把参数直接放在请求里面而是放在 <code class="highlighter-rouge">RedirectAttributesModelMap</code> 对象里便可以了。</p>
+在跳转前不能把参数直接放在请求里面而是放在 <code>RedirectAttributesModelMap</code> 对象里便可以了。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@RequestMapping(value="searchIndex.htm",method = RequestMethod.POST)
+<pre><code>@RequestMapping(value="searchIndex.htm",method = RequestMethod.POST)
 public ModelAndView searchIndex(Model model,RedirectAttributesModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
 	ModelAndView view = null;
 	...
@@ -145,11 +144,10 @@ public ModelAndView searchIndex(Model model,RedirectAttributesModelMap modelMap,
 	return view;
 }
 </code></pre>
-</div>
 
-<p>之后再进入跳转后的请求里便可以直接获取 <code class="highlighter-rouge">name</code> 值。</p>
+<p>之后再进入跳转后的请求里便可以直接获取 <code>name</code> 值。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@RequestMapping(value="/projects.htm", method=RequestMethod.GET)
+<pre><code>@RequestMapping(value="/projects.htm", method=RequestMethod.GET)
 public ModelAndView getView(Model model, HttpServletRequest request, HttpServletResponse response) {
 	
 	ModelAndView view = null;
@@ -163,9 +161,8 @@ public ModelAndView getView(Model model, HttpServletRequest request, HttpServlet
 	return view;
 }
 </code></pre>
-</div>
 
-<p>这时获取的 <code class="highlighter-rouge">name</code> 便不是乱码了。</p>
+<p>这时获取的 <code>name</code> 便不是乱码了。</p>
 
 <hr />
 

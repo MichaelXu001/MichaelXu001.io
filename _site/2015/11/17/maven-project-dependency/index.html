@@ -118,9 +118,9 @@
 
 <h3 id="jar">排除全部jar包影响</h3>
 
-<p>如 <code class="highlighter-rouge">project1</code> 需要依赖 <code class="highlighter-rouge">project2</code> ,但是不想要 <code class="highlighter-rouge">project2</code> 引用的 <code class="highlighter-rouge">jar</code> 包。所以在 <code class="highlighter-rouge">project1</code> 中需要排除 <code class="highlighter-rouge">project2</code> 内引用的 <code class="highlighter-rouge">jar</code> 包。当 <code class="highlighter-rouge">project2</code> 中引用的 <code class="highlighter-rouge">jar</code> 包太多，一个个排除显然太过麻烦。直接使用 <code class="highlighter-rouge">*</code> 即可排除引用的 <code class="highlighter-rouge">jar</code> 包:</p>
+<p>如 <code>project1</code> 需要依赖 <code>project2</code> ,但是不想要 <code>project2</code> 引用的 <code>jar</code> 包。所以在 <code>project1</code> 中需要排除 <code>project2</code> 内引用的 <code>jar</code> 包。当 <code>project2</code> 中引用的 <code>jar</code> 包太多，一个个排除显然太过麻烦。直接使用 <code>*</code> 即可排除引用的 <code>jar</code> 包:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+<pre><code>&lt;dependency&gt;
 	&lt;groupId&gt;com.xxx.xxxx&lt;/groupId&gt;
 	&lt;artifactId&gt;xxxx&lt;/artifactId&gt;
 	&lt;version&gt;1.0&lt;/version&gt;
@@ -132,7 +132,6 @@
 	&lt;/exclusions&gt;
 &lt;/dependency&gt;
 </code></pre>
-</div>
 
 <hr />
 

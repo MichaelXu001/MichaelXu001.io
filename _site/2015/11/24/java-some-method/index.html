@@ -119,19 +119,18 @@
 
 <h2 id="section">方法1-获取中文的拼音</h2>
 
-<p>包 <code class="highlighter-rouge">pinyin4j</code> 在 <code class="highlighter-rouge">maven</code> 里的引用：</p>
+<p>包 <code>pinyin4j</code> 在 <code>maven</code> 里的引用：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+<pre><code>&lt;dependency&gt;
 	  &lt;groupId&gt;com.belerweb&lt;/groupId&gt;
 	  &lt;artifactId&gt;pinyin4j&lt;/artifactId&gt;
 	  &lt;version&gt;2.5.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-</div>
 
 <p>根据中文获取对应的拼音：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>private boolean isChinese(char a) { 
+<pre><code>private boolean isChinese(char a) { 
      int v = (int)a; 
      return (v &gt;=19968 &amp;&amp; v &lt;= 171941); 
 }
@@ -160,13 +159,12 @@ private String getPyName(String chinese) {
     return pybf.toString(); 
 }
 </code></pre>
-</div>
 
 <h2 id="section-1">方法2-获取时间段内的随机时间：</h2>
 
 <p>代码：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>private long random(long begin, long end) {
+<pre><code>private long random(long begin, long end) {
 	long rtn = begin + (long) (Math.random() * (end - begin));
 	
 	// 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
@@ -194,7 +192,6 @@ private Date randomDate(String beginDate, String endDate) {
 	return null;
 }
 </code></pre>
-</div>
 
 <hr />
 

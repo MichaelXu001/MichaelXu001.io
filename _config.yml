@@ -7,9 +7,9 @@ description: Michael的博客 Web
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 
- baseurl: "http://michaelxu001.github.io/MichaelXu001.io/" # the subpath of your site, e.g. /blog/
-# url: "http://yourdomain.com" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
+ baseurl: "http://michaelxu001.github.io/MichaelXu001.io" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: jekyllrb
 github_username:  github
 permalink: /:year/:month/:day/:title/
 

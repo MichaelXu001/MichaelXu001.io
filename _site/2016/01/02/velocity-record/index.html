@@ -118,19 +118,18 @@
 
 <h2 id="section">指令:</h2>
 
-<p><code class="highlighter-rouge">#foreach</code>指令-用于循环:</p>
+<p><code>#foreach</code>指令-用于循环:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#foreach($list in $lists)
+<pre><code>#foreach($list in $lists)
 
 #end
 </code></pre>
-</div>
 
-<p><code class="highlighter-rouge">$lists</code>可以是<code class="highlighter-rouge">List</code>、<code class="highlighter-rouge">Vector</code>、<code class="highlighter-rouge">HashTable</code>、数组等；其中在循环中有一个变量$velocityCount作为循环计数使用，该变量从1开始。</p>
+<p><code>$lists</code>可以是<code>List</code>、<code>Vector</code>、<code>HashTable</code>、数组等；其中在循环中有一个变量$velocityCount作为循环计数使用，该变量从1开始。</p>
 
-<p><code class="highlighter-rouge">#if</code>指令-用户判断:</p>
+<p><code>#if</code>指令-用户判断:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#if($value)##判断`value`值不为空
+<pre><code>#if($value)##判断`value`值不为空
 
 #end
 
@@ -142,29 +141,25 @@
 
 #end
 </code></pre>
-</div>
 
-<p><code class="highlighter-rouge">#if</code>的逻辑判断和一般的java判断没什么区别</p>
+<p><code>#if</code>的逻辑判断和一般的java判断没什么区别</p>
 
-<p><code class="highlighter-rouge">#set</code>指令-用户赋值:</p>
+<p><code>#set</code>指令-用户赋值:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#set($value = `value`)
+<pre><code>#set($value = `value`)
 </code></pre>
-</div>
 
-<p><code class="highlighter-rouge">#parse</code>指令-引入另外一个模板:</p>
+<p><code>#parse</code>指令-引入另外一个模板:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#parse(demo.vm)
+<pre><code>#parse(demo.vm)
 </code></pre>
-</div>
 
-<p><code class="highlighter-rouge">#include</code>指令-引入文件(该页面只能我静态的):</p>
+<p><code>#include</code>指令-引入文件(该页面只能我静态的):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#include(soruce.vm)
+<pre><code>#include(soruce.vm)
 </code></pre>
-</div>
 
-<p><code class="highlighter-rouge">#stop</code>指令:</p>
+<p><code>#stop</code>指令:</p>
 
       </article>
 	  <hr>

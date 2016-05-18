@@ -121,7 +121,7 @@
 
 <p>获取字符串内根据子字符串切割后的字符串长度：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>DELIMITER $$
+<pre><code>DELIMITER $$
 DROP FUNCTION IF EXISTS `test`.`getArrayStrLength`$$
 CREATE FUNCTION `test`.`getArrayStrLength`(str varchar(8000),split varchar(10)) RETURNS int
 BEGIN
@@ -142,13 +142,12 @@ BEGIN
 END $$
 DELIMITER ;
 </code></pre>
-</div>
 
 <h2 id="section-1">函数2</h2>
 
 <p>在数组坐标下查询对应的子字符串：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>DELIMITER $$
+<pre><code>DELIMITER $$
 DROP FUNCTION IF EXISTS `test`.`getArrayStrOfIndex`$$
 CREATE FUNCTION `test`.`getArrayStrOfIndex`(str varchar(8000),split varchar(10),dex INT) RETURNS INT
 BEGIN
@@ -174,7 +173,6 @@ BEGIN
 END $$
 DELIMITER ;
 </code></pre>
-</div>
 
 <hr />
 
